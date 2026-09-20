@@ -360,7 +360,7 @@ Ensure `.env` exists and contains valid values for:
 - `GROQ_API_KEY`
 - `SUPABASE_URL`
 - `SUPABASE_KEY`
-
+- `GROQ_MODEL`
 ### Database errors
 Verify that `database/schema.sql` has been executed in Supabase.
 
