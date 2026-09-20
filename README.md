@@ -199,6 +199,7 @@ Create a `.env` file in the project root with:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
+GROQ_MODEL=openai/gpt-oss-120b
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_KEY=your_service_role_key
 ```
