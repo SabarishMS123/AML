@@ -66,9 +66,21 @@ def risk_badge_html(level: str) -> str:
     level_u = str(level).upper()
     color = risk_color(level_u)
     label = RISK_LABELS.get(level_u, level_u or "UNKNOWN")
+
+    def contrast_text(hex_color: str) -> str:
+        hex_color = hex_color.lstrip("#")
+        if len(hex_color) == 3:
+            hex_color = "".join(ch * 2 for ch in hex_color)
+        r = int(hex_color[0:2], 16)
+        g = int(hex_color[2:4], 16)
+        b = int(hex_color[4:6], 16)
+        luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+        return "#0f172a" if luminance > 0.6 else "#ffffff"
+
+    text_color = contrast_text(color)
     return (
         f'<span class="risk-badge" '
-        f'style="background:{color}22;color:{color};border:1px solid {color}66;">'
+        f'style="background:{color};color:{text_color};border:1px solid {color};box-shadow:0 6px 18px rgba(15,23,42,0.08);">'
         f"{label}</span>"
     )
 
@@ -341,6 +353,20 @@ def inject_custom_css() -> None:
             font-weight: 700;
             white-space: nowrap;
             backdrop-filter: blur(2px);
+            letter-spacing: 0.02em;
+        }
+
+        .investigation-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            height: 100%;
+        }
+        .investigation-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            height: 100%;
         }
 
         /* ================================================================

@@ -1,102 +1,91 @@
-# AML Compliance Suite
+# AML Compliance AI Suite
 
-A practical AI-powered Anti-Money Laundering (AML) compliance application that combines:
+A practical AI-powered Anti-Money Laundering (AML) platform designed to support compliance teams with intelligent risk detection, policy-grounded investigation, and explainable decision support.
 
-- deterministic AML rule detection
-- Retrieval-Augmented Generation (RAG) over policy documents
-- a Groq-powered reasoning layer
-- an MCP server exposing AML tools to external clients
-- a Streamlit dashboard for demo and evaluation
-
-This project is designed to show how AI can support compliance workflows in a real-world domain by combining rule-based risk detection with policy-grounded LLM reasoning.
+This project combines rule-based AML checks with Retrieval-Augmented Generation (RAG), Large Language Model reasoning, and MCP-based tool execution to demonstrate how AI can be applied in a real-world financial compliance workflow.
 
 ---
 
-## Overview
+## Project Overview
 
-The application allows users to:
+The application helps teams:
 
-- upload AML policy PDFs
-- ingest transaction data from CSV files
-- detect suspicious customer activity using rule-based checks
-- retrieve relevant policy excerpts using vector search
-- ask natural-language questions about AML policy content
-- evaluate customer risk using a hybrid rule + AI workflow
-- expose the same data and actions through an MCP-compatible server
+- ingest AML policy documents and transaction data
+- detect suspicious customer activity using deterministic rule logic
+- retrieve relevant policy clauses through semantic search
+- ask natural-language questions about compliance policies
+- evaluate risk using a hybrid rule + AI approach
+- investigate flagged customers through an agentic workflow with human approval
 
-This is a working example of an AI-assisted decision system for AML risk review.
-
----
-
-## Core Features
-
-### 1. Policy ingestion and semantic search
-- Upload AML policy PDFs
-- extract text and split into chunks
-- generate embeddings with Sentence-Transformers
-- store them in Supabase with pgvector support
-- retrieve relevant policy clauses using similarity search
-
-### 2. AML risk evaluation engine
-The platform evaluates customer activity against classic AML red flags:
-
-- large transaction detection
-- velocity / burst pattern detection
-- high-risk jurisdiction exposure
-- structuring patterns
-
-These checks are implemented in the rule engine and produce structured flags for each customer.
-
-### 3. AI agent-like risk reasoning
-For flagged customers, the application:
-
-- collects detected risk factors
-- retrieves relevant policy excerpts
-- sends the context to Groq LLM
-- returns a final risk decision: HIGH, MEDIUM, or LOW
-- stores the reasoning and audit trail in the database
-
-This creates an agent-like hybrid workflow: deterministic detection first, then AI reasoning for final decision support.
-
-### 4. RAG-powered policy chatbot
-Users can ask policy-related questions in natural language, and the chatbot:
-
-- embeds the query
-- finds the most relevant policy chunks
-- uses those excerpts as context for the LLM response
-- answers while staying grounded in policy text
-
-### 5. MCP server integration
-The project exposes AML operations through a FastMCP server, including:
-
-- customer transaction lookup
-- policy document search
-- manual risk score update
-
-This demonstrates how AI and data tools can be exposed through a standard protocol for interoperability.
+This is a working prototype for an AI-assisted AML investigation system that blends structured data analysis with contextual policy reasoning.
 
 ---
 
-## Architecture
+## Why This Project Matters
 
-The application follows a practical hybrid AI architecture:
+Modern compliance teams deal with high transaction volumes, regulatory complexity, and the need for explainable decision-making. Traditional review processes are often slow and manual. This project addresses that challenge by creating an intelligent workflow where:
 
-1. Data ingestion layer
-   - uploads PDF policy documents
-   - ingests CSV transaction records
-   - stores everything in Supabase
+- transaction rules flag suspicious behavior quickly
+- AI retrieves policy context from internal documentation
+- an investigation agent reasons through the case step by step
+- risk updates can be reviewed before being applied
 
-2. Retrieval layer
-   - chunking + embedding of policy knowledge
-   - vector similarity search for policy grounding
+The result is a more transparent, auditable, and operationally useful AML decision-support platform.
 
-3. Decision layer
-   - deterministic AML rule engine
-   - Groq-based reasoning layer
+---
 
-4. Interface layer
-   - Streamlit dashboard
-   - MCP server for tool-based access
+## Key Features
+
+### 1. AML Risk Evaluation Engine
+- Detects red flags such as unusually large transfers, suspicious velocity, high-risk jurisdiction exposure, and structuring patterns
+- Produces structured risk signals for each customer
+- Helps prioritize cases for manual review
+
+### 2. Policy Ingestion and Semantic Search
+- Uploads AML policy PDFs
+- Splits documents into chunks and generates embeddings
+- Stores policy knowledge in Supabase with pgvector support
+- Retrieves the most relevant policy sections using similarity search
+
+### 3. RAG-Powered Policy Chatbot
+- Supports natural-language questions about AML rules and policies
+- Returns grounded answers using retrieved policy excerpts
+- Reduces dependence on unverified AI responses
+
+### 4. AI Investigation Agent
+- Uses tool-calling logic to decide when transaction data or policy context is needed
+- Investigates customer activity with contextual reasoning
+- Includes a human approval checkpoint before a risk score is updated
+- Logs investigation history for auditability
+
+### 5. MCP Integration
+- Exposes AML-related operations through an MCP-compatible server
+- Demonstrates interoperability between AI workflows and external tools
+- Shows how enterprise tools can be surfaced in a standard execution model
+
+---
+
+## System Architecture
+
+The solution follows a hybrid AI architecture:
+
+1. Data Layer
+   - policy PDFs are uploaded and processed
+   - transaction CSVs are ingested into a relational database
+   - structured customer and transaction data is stored in Supabase
+
+2. Retrieval Layer
+   - PDF content is chunked and embedded
+   - vector similarity search retrieves policy context
+
+3. Decision Layer
+   - deterministic AML rules identify suspicious patterns
+   - Groq-powered reasoning provides final risk interpretation
+
+4. Interface Layer
+   - Streamlit dashboard for compliance users
+   - AI investigation panel for deeper case review
+   - MCP server for tool-based interaction
 
 ---
 
@@ -104,47 +93,77 @@ The application follows a practical hybrid AI architecture:
 
 - Python 3.11+
 - Streamlit
-- Sentance-Transformers
-- Groq API
 - Supabase + PostgreSQL + pgvector
+- Sentence-Transformers
+- Groq API
 - FastMCP
 - Pandas
 - PyPDF
 - Python-dotenv
+- Plotly
 
 ---
 
-## Project Structure
+## Repository Structure
 
 ```text
 aml-streamlit-suite/
-├── app.py                          # Main Streamlit app entrypoint
-├── requirements.txt               # Project dependencies
-├── README.md                      # Project documentation
-├── .env.example                   # Sample environment variables
+├── app.py                              # Main Streamlit application
+├── requirements.txt                   # Python dependencies
+├── README.md                          # Project overview and setup guide
+├── .env.example                       # Environment variable template
+├── agents/
+│   ├── __init__.py
+│   ├── agent_models.py                # Agent request/result models
+│   ├── agent_prompt.py                # Prompt templates
+│   ├── aml_investigation_agent.py     # Tool-calling AML investigation workflow
+│   └── test_agent_scenarios.py        # Agent test scenarios
 ├── database/
 │   ├── __init__.py
-│   ├── schema.sql                 # Supabase schema and pgvector setup
-│   └── supabase_client.py         # Database connection logic
-├── services/
+│   ├── schema.sql                     # Database schema and vector setup
+│   ├── migration_add_page_number.sql
+│   ├── migration_add_agent_audit.sql
+│   └── supabase_client.py             # Supabase connection utilities
+├── mcp_client/
 │   ├── __init__.py
-│   ├── embeddings.py              # Shared embedding utilities
-│   ├── aml_agent.py               # AML rule engine + Groq reasoning workflow
-│   ├── csv_parser.py              # CSV ingestion and transaction processing
-│   ├── pdf_rag.py                 # PDF extraction, chunking, embedding ingestion
-│   └── rag_chat.py                # RAG chatbot implementation
+│   └── agent_mcp_client.py            # Client layer for tool dispatch
 ├── mcp_server/
 │   ├── __init__.py
-│   └── server.py                  # MCP server exposing AML tools
-└── sample_data/
-    └── sample_transactions.csv   # Example transaction dataset
+│   └── server.py                      # MCP server exposing AML tools
+├── services/
+│   ├── __init__.py
+│   ├── agent_audit.py                 # Investigation audit logging
+│   ├── aml_agent.py                   # AML rule engine and scoring workflow
+│   ├── csv_parser.py                  # CSV ingestion and customer processing
+│   ├── embeddings.py                  # Embedding utilities
+│   ├── pdf_rag.py                     # PDF ingestion and retrieval pipeline
+│   ├── rag_chat.py                    # RAG-powered chatbot logic
+│   └── ...
+├── utils/
+│   ├── __init__.py
+│   ├── formatting.py
+│   └── ui.py
+
 ```
+
+---
+
+## How the Application Works
+
+1. Upload AML policy documents and transaction CSV files.
+2. The rule engine checks activity against known suspicious patterns.
+3. Relevant policy content is retrieved using vector-based semantic search.
+4. The LLM interprets the risk context and provides an explainable decision.
+5. The AI investigation agent may ask for additional information and propose a risk update.
+6. Human approval is required before the update is written to the system.
+
+This creates a practical decision-support workflow for compliance operations.
 
 ---
 
 ## Setup Instructions
 
-### 1. Clone or open the project
+### 1. Clone the repository
 
 ```bash
 cd aml-streamlit-suite
@@ -158,12 +177,12 @@ python -m venv .venv
 
 Activate it:
 
-- Windows PowerShell
+Windows PowerShell:
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-- macOS/Linux
+macOS/Linux:
 ```bash
 source .venv/bin/activate
 ```
@@ -176,7 +195,7 @@ pip install -r requirements.txt
 
 ### 4. Configure environment variables
 
-Create a `.env` file in the project root based on `.env.example`:
+Create a `.env` file in the project root with:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
@@ -184,42 +203,19 @@ SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_KEY=your_service_role_key
 ```
 
-Important:
-- use the Supabase service role key for server-side writes
-- do not use the anonymous key for ingestion and updates
+### 5. Set up the database
 
-### 5. Configure the database
-
-Open your Supabase project and run the SQL from `database/schema.sql`
-(fresh install) — this creates every table including `agent_investigations`
-(the AI agent's audit trail) and enables the vector retrieval function used
-by the app.
-
-**Already have data and don't want to drop tables?** Run the two additive
-migrations instead:
-```sql
--- database/migration_add_page_number.sql      (adds page-cited RAG chunks)
--- database/migration_add_agent_audit.sql      (adds the agent audit table)
-```
+Run the SQL in `database/schema.sql` in your Supabase project. If needed, apply the migration files to extend the schema.
 
 ---
 
 ## Run the Application
 
-### Start the Streamlit app
+### Start the dashboard
 
 ```bash
 streamlit run app.py
 ```
-
-Then open the local URL shown in the terminal, usually:
-
-```text
-http://localhost:8501
-```
-
-The new **🤖 AI Investigation Agent** tab needs the same `GROQ_API_KEY` /
-`SUPABASE_URL` / `SUPABASE_KEY` already configured above — no extra setup.
 
 ### Run the MCP server separately
 
@@ -227,76 +223,60 @@ The new **🤖 AI Investigation Agent** tab needs the same `GROQ_API_KEY` /
 python mcp_server/server.py
 ```
 
-This exposes the AML toolset over MCP for any compatible client or workflow.
-The Streamlit-embedded AI agent (see below) calls the *same* tool functions
-in-process rather than over the wire — see `mcp_client/agent_mcp_client.py`
-for why, and how to swap in a real MCP client session later if needed.
-
-### Run the agent's test scenarios
+### Run AI agent scenario tests
 
 ```bash
 python -m unittest agents/test_agent_scenarios.py -v
 ```
 
-These mock the Groq client and the tool dispatcher, so they run with no API
-key and no database connection — they verify the agent's *control flow*
-(tool selection, the human-approval gate, JSON parsing, graceful fallback
-on a malformed model response), covering the three required scenarios:
-a normal customer, a suspicious customer, and insufficient information.
+---
+
+## Demo Video
+
+Add the project demo video link here:
+
+```text
+Demo Video: [Insert your video URL here]
+```
+
+This section can be used to showcase the workflow, dashboard, and AI investigation flow in a short presentation format.
 
 ---
 
-## 🤖 AI Investigation Agent
+## Project Impact
 
-A genuine tool-calling agent layered on top of the existing RAG + MCP
-architecture (see `agents/` and `mcp_client/`), distinct from the
-deterministic rule-engine + single LLM call in the Risk Dashboard tab.
+This project demonstrates the ability to build an end-to-end AI application in a high-impact domain:
 
-**Architecture:**
-```
-Streamlit UI (🤖 AI Investigation Agent tab)
-        │
-        ▼
-agents/aml_investigation_agent.py   — the agentic loop
-        │  (Groq function-calling: llama-3.3-70b-versatile)
-        ▼
-mcp_client/agent_mcp_client.py      — call_tool(name, **kwargs) dispatcher
-        │
-        ▼
-mcp_server/server.py's tool functions   — get_customer_transactions,
-        │                                  search_policy_docs,
-        │                                  update_customer_risk_score
-        ▼
-Supabase (customers/transactions) · services/rag_chat.py (existing RAG)
-```
+- AI for financial compliance
+- hybrid decision systems combining rules + LLMs
+- contextual policy retrieval using RAG
+- autonomous investigation workflows with human oversight
+- practical use of MCP and agent-driven tool orchestration
 
-**Why this is a real agent, not another fixed pipeline:** the LLM is given
-the three tool schemas and decides for itself, turn by turn, whether it
-needs transaction data, a policy lookup, neither, or both, and in what
-order — the loop in `run_investigation()` just executes whatever the model
-asks for and feeds the result back, up to `MAX_TOOL_ITERATIONS` rounds.
-Nothing in the Python code hardcodes "always fetch transactions then
-always search policy then call the LLM once" the way `services/aml_agent.py`
-does for the Risk Dashboard's automated evaluation.
+It reflects a strong understanding of applied AI, backend integration, data workflows, and explainable decision systems in enterprise environments.
 
-**Human approval gate:** the agent may call `update_customer_risk_score`,
-but that specific tool is intercepted before execution — see
-`AUTO_EXECUTE_TOOLS` in `mcp_client/agent_mcp_client.py`. The proposed
-change is shown in the UI with an **✅ Approve Risk Update** button; only
-clicking it actually runs the tool and writes to the database.
+---
 
-**Auditability:** every investigation (approved, rejected, or just
-informational) is logged to the `agent_investigations` table via
-`services/agent_audit.py` — request, full tool-call trace, parsed
-conclusion, and approval status. See the "Recent Investigations" expander
-at the bottom of the tab.
+## Learnings
 
-**Example inputs to try:**
-| Customer ID | Request | Expected outcome |
-|---|---|---|
-| An existing normal customer | "Investigate this customer and determine the AML risk." | LOW risk, no policy lookup needed, no risk-update recommendation |
-| A customer with several transactions just under $10,000 | "Investigate this customer and determine whether the activity is suspicious." | Transaction tool → policy tool (structuring) → HIGH risk with a gated risk-update recommendation |
-| A customer ID that doesn't exist, e.g. `CUST-DOES-NOT-EXIST` | "Investigate this customer." | `insufficient_information: true`, risk level `UNKNOWN`, no hallucinated conclusion |
+This solution showcases practical skills in:
+
+- Python application development
+- AI and LLM integration
+- semantic search and vector databases
+- API/tool orchestration
+- workflow design for enterprise use cases
+- prototype development in a regulated domain
+
+---
+
+## Contact / Portfolio
+
+For questions or to view additional work, connect with the project owner through the relevant portfolio or professional profile.
+
+> Demo video and repository link can be added here before submission or sharing with recruiters.
+
+
 
 ---
 

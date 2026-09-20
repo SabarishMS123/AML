@@ -34,6 +34,7 @@ st.set_page_config(
     page_title="AML Compliance Suite",
     page_icon="🛡️",
     layout="wide",
+    initial_sidebar_state="collapsed",
 )
 
 inject_custom_css()
@@ -92,35 +93,12 @@ if "last_investigation_logged" not in st.session_state:
     st.session_state.last_investigation_logged = False
 
 # =======================================================================
-# Header — clean title, system/tech details tucked into the sidebar
+# Header — clean page title without the left sidebar
 # =======================================================================
 app_header(
     "🛡️ AML Compliance Suite",
     "AI-assisted transaction monitoring, risk scoring, and policy Q&A for compliance teams.",
 )
-
-with st.sidebar:
-    st.markdown(
-        """
-        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;">
-            <span style="font-size:1.6rem;">🛡️</span>
-            <div>
-                <div style="font-weight:800;font-size:1.1rem;color:#0f172a;margin:0;">AML Compliance Suite</div>
-                <div style="color:#64748b;font-size:0.82rem;margin:0;">Enterprise risk & policy assistant</div>
-            </div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-    with st.expander("⚙️ System details", expanded=False):
-        st.markdown(
-            "- **Frontend:** Streamlit\n"
-            "- **LLM:** Groq (Llama 3.3)\n"
-            "- **Embeddings:** Sentence-Transformers (local)\n"
-            "- **Vector store:** Supabase (pgvector, cosine similarity)\n"
-            "- **Tooling:** FastMCP"
-        )
-        st.caption(f"Model: `{os.getenv('GROQ_MODEL', 'llama-3.3-70b-versatile')}`")
 
 tab_ingest, tab_dashboard, tab_chat, tab_agent = st.tabs(
     ["📥 Data Ingestion", "📊 Risk Dashboard", "💬 Policy Chatbot", "🤖 AI Investigation Agent"]
@@ -679,6 +657,13 @@ with tab_agent:
     inv = st.session_state.last_investigation
     if inv:
         st.divider()
+        summary_df = get_customer_summary_table()
+        current_risk = "UNKNOWN"
+        if not summary_df.empty:
+            customer_match = summary_df[summary_df["external_id"].astype(str).str.upper() == str(inv.customer_id).upper()]
+            if not customer_match.empty:
+                current_risk = str(customer_match.iloc[0].get("risk_level", "UNKNOWN")).upper()
+
         head_col1, head_col2 = st.columns([3, 1])
         with head_col1:
             st.markdown(
@@ -692,7 +677,11 @@ with tab_agent:
                 unsafe_allow_html=True,
             )
         with head_col2:
-            st.markdown(risk_badge_html(inv.risk_level), unsafe_allow_html=True)
+            st.markdown(f"<div style='display:flex;flex-direction:column;gap:0.3rem;align-items:flex-end;'>"
+                        f"{risk_badge_html(current_risk if current_risk in {'LOW','MEDIUM','HIGH'} else inv.risk_level)}"
+                        f"</div>", unsafe_allow_html=True)
+            if inv.risk_update_recommendation and inv.risk_update_recommendation.risk_level.upper() != current_risk:
+                st.caption(f"Recommended update: {risk_badge_html(inv.risk_update_recommendation.risk_level)}", unsafe_allow_html=True)
 
         if inv.insufficient_information:
             st.warning("⚠️ The agent flagged this investigation as having insufficient information.")
@@ -701,8 +690,9 @@ with tab_agent:
         if inv.error:
             st.error(f"Agent error: {inv.error}")
 
-        detail_col1, detail_col2 = st.columns(2)
+        detail_col1, detail_col2 = st.columns(2, gap="large")
         with detail_col1:
+            st.markdown('<div class="investigation-column">', unsafe_allow_html=True)
             sub_section("🚩 Suspicious Patterns")
             if inv.suspicious_patterns:
                 for p in inv.suspicious_patterns:
@@ -716,8 +706,10 @@ with tab_agent:
                     st.markdown(f"- {e}")
             else:
                 st.caption("No specific evidence recorded.")
+            st.markdown('</div>', unsafe_allow_html=True)
 
         with detail_col2:
+            st.markdown('<div class="investigation-column">', unsafe_allow_html=True)
             sub_section("📚 Policy References")
             if inv.policy_references:
                 for r in inv.policy_references:
@@ -727,6 +719,7 @@ with tab_agent:
 
             sub_section("✅ Recommended Action")
             st.markdown(inv.recommended_action or "_None provided._")
+            st.markdown('</div>', unsafe_allow_html=True)
 
         sub_section("🧠 Agent Analysis")
         render_llm_markdown(st, inv.analysis or "_No analysis provided._")
