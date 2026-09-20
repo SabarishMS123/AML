@@ -1,0 +1,8 @@
+risk_level: HIGH
+flags: [
+  {
+    "rule": "LARGE_TRANSACTION",
+    "detail": "Transaction TXN-9006 of 250000.0 EUR exceeds $10,000 threshold."
+  }
+]
+reasoning: The transaction of 250,000 EUR far exceeds the $10,000 threshold defined in policy excerpt 0, triggering the LARGE_TRANSACTION rule. Under general AML best practice, such a high‑value single transaction warrants a high risk rating and further investigation.
