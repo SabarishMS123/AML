@@ -243,13 +243,13 @@ Add the project demo video link here:
 
 ## Dashboard view
 ## INGESTION TAB
-![Ingestion Tab](image-link)
+![Ingestion Tab](images/Ingestion Tab.png)
 ## RISK ANALYSIS TAB
-![Risk Tab](image-link)
+![Risk Tab](images/Risk Tab.png)
 ## RAG BOT TAB
-![Rag Tab](image-link)
+![Rag Tab](images/Rag Tab.png)
 ## INVESTIGATION AGENT TAB
-![Investigation Tab](image-link)
+![Investigation Tab](images/Investigation Tab.png)
 
 ---
 
