@@ -1,0 +1,8 @@
+customer_id,full_name,country,transaction_id,amount,currency,sender_country,receiver_country,timestamp,transaction_type
+C-1001,Alice Smith,US,TXN-9001,150.0,USD,US,US,2026-09-08T08:15:00Z,card_payment
+C-1002,Bob Jones,UK,TXN-9002,12500.0,GBP,UK,AE,2026-09-08T09:30:00Z,wire_transfer
+C-1003,Carlos Ray,MX,TXN-9003,9900.0,USD,MX,PA,2026-09-08T10:05:00Z,crypto_withdrawal
+C-1003,Carlos Ray,MX,TXN-9004,9850.0,USD,MX,PA,2026-09-08T10:45:00Z,crypto_withdrawal
+C-1004,David Kim,SG,TXN-9005,45.0,SGD,SG,SG,2026-09-08T11:20:00Z,p2p_transfer
+C-1005,Elena Volkov,CY,TXN-9006,250000.0,EUR,RU,CY,2026-09-08T12:00:00Z,corporate_wire
+C-1006,Frank Wright,CA,TXN-9007,500.0,CAD,CA,US,2026-09-08T13:10:00Z,card_payment
