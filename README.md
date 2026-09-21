@@ -200,7 +200,7 @@ Create a `.env` file in the project root with:
 ```env
 GROQ_API_KEY=your_groq_api_key
 GROQ_MODEL=openai/gpt-oss-120b
-SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_URL=https://jzttmpyzybtlfsukmxpc.supabase.co
 SUPABASE_KEY=your_service_role_key
 ```
 
@@ -229,7 +229,6 @@ python mcp_server/server.py
 ```bash
 python -m unittest agents/test_agent_scenarios.py -v
 ```
-
 ---
 
 ## Demo Video
@@ -239,7 +238,7 @@ Add the project demo video link here:
 
 [**PROJECT DEMO VIDEO**](https://drive.google.com/file/d/1VZ0pe1mV96iMJiCt8Z1nhiaO_8rbO-Ub/view?usp=sharing)
 
-
+---
 
 ## Dashboard view
 ## INGESTION TAB
@@ -284,11 +283,6 @@ This solution showcases practical skills in:
 
 [**AML COMPLIANCE SUITE HOSTED LINK **](https://aml-compliance-suite-finzly-project.up.railway.app/)
 
-
----
-## Contact 
-EMAIL : mssabarish16@gmail.com
-Location : Salem , TN , India
 
 ---
 
@@ -398,3 +392,13 @@ This repository demonstrates a realistic AI application for AML compliance:
 - end-to-end workflow in a user-friendly dashboard
 
 It is a practical example of applying modern AI techniques to a real business problem.
+
+
+---
+## Contact 
+EMAIL : mssabarish16@gmail.com
+Location : Salem , TN , India
+Linked In :https://www.linkedin.com/in/sabarish-m-s/
+DEV COMMUNITY : https://dev.to/saboosakthi
+
+---
