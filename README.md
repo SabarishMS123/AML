@@ -237,7 +237,7 @@ python -m unittest agents/test_agent_scenarios.py -v
 Add the project demo video link here:
 
 ```text
-Demo Video: https://drive.google.com/file/d/1VZ0pe1mV96iMJiCt8Z1nhiaO_8rbO-Ub/view?usp=sharing
+[Demo Video](https://drive.google.com/file/d/1VZ0pe1mV96iMJiCt8Z1nhiaO_8rbO-Ub/view?usp=sharing)
 ```
 
 This section can be used to showcase the workflow, dashboard, and AI investigation flow in a short presentation format.
