@@ -396,9 +396,9 @@ It is a practical example of applying modern AI techniques to a real business pr
 
 ---
 ## Contact 
-EMAIL : mssabarish16@gmail.com
-Location : Salem , TN , India
-Linked In :https://www.linkedin.com/in/sabarish-m-s/
-DEV COMMUNITY : https://dev.to/saboosakthi
+-EMAIL : mssabarish16@gmail.com
+-Location : Salem , TN , India
+-Linked In :https://www.linkedin.com/in/sabarish-m-s/
+-DEV COMMUNITY : https://dev.to/saboosakthi
 
 ---
