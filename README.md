@@ -239,7 +239,17 @@ Add the project demo video link here:
 
 [**PROJECT DEMO VIDEO**](https://drive.google.com/file/d/1VZ0pe1mV96iMJiCt8Z1nhiaO_8rbO-Ub/view?usp=sharing)
 
-This section can be used to showcase the workflow, dashboard, and AI investigation flow in a short presentation format.
+
+
+## Dashboard view
+## INGESTION TAB
+![Ingestion Tab](image-link)
+## RISK ANALYSIS TAB
+![Risk Tab](image-link)
+## RAG BOT TAB
+![Rag Tab](image-link)
+## INVESTIGATION AGENT TAB
+![Investigation Tab](image-link)
 
 ---
 
