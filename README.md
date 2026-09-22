@@ -106,6 +106,7 @@ The solution follows a hybrid AI architecture:
    - MCP server for tool-based interaction
 
 ---
+### Investigation Flow
 ```mermaid
 sequenceDiagram
     participant U as User (Streamlit)
@@ -276,14 +277,18 @@ Add the project demo video link here:
 
 ---
 
-## Dashboard view
-## INGESTION TAB
+## 📸 Screenshots
+
+### Ingestion Tab
 ![Ingestion Tab](images/Ingestion%20Tab.png)
-## RISK ANALYSIS TAB
+
+### Risk Analysis Tab
 ![Risk Tab](images/Risk%20Tab.png)
-## RAG BOT TAB
-![Rag Tab](images/Rag%20Tab.png)
-## INVESTIGATION AGENT TAB
+
+### RAG Chatbot Tab
+![RAG Tab](images/Rag%20Tab.png)
+
+### Investigation Agent Tab
 ![Investigation Tab](images/Investigation%20Tab.png)
 
 ---
@@ -431,14 +436,11 @@ It is a practical example of applying modern AI techniques to a real business pr
 
 
 ---
-## Contact 
-📧  EMAIL : mssabarish16@gmail.com
+---
+## Contact
 
-📍  Location : Salem , TN , India
-
-🔗  [LinkedIn]([https://www.linkedin.com/in/your-profile](https://www.linkedin.com/in/sabarish-m-s/))
- :https://www.linkedin.com/in/sabarish-m-s/
-
-𝓓    Dev Community : https://dev.to/saboosakthi
-
+📧 mssabarish16@gmail.com
+📍 Salem, Tamil Nadu, India
+🔗 [LinkedIn](https://www.linkedin.com/in/sabarish-m-s/)
+📝 [Dev.to](https://dev.to/saboosakthi)
 ---
