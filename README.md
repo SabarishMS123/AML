@@ -68,7 +68,18 @@ The result is a more transparent, auditable, and operationally useful AML decisi
 - Exposes AML-related operations through an MCP-compatible server
 - Demonstrates interoperability between AI workflows and external tools
 - Shows how enterprise tools can be surfaced in a standard execution model
+  
+##  What Makes This a True Agent (Not a Script)
 
+Unlike a fixed pipeline, the investigation agent decides its own path:
+
+- The LLM sees the tool list + conversation history and decides **per turn** whether to call another tool or conclude.
+- There is no hardcoded "fetch transactions → search policy → report" sequence.
+- The loop enforces `MAX_TOOL_ITERATIONS = 6` and gracefully truncates.
+- Hallucinated tool calls (e.g., a fake `"json"` tool carrying the report) are detected and treated as the final report — the agent does not crash.
+- `tool_use_failed` errors from Groq are recovered by retrying with `tool_choice="none"`.
+- `update_customer_risk_score` is **gated** — it never writes to the database without human approval.
+- The agent reports `insufficient_information: true` and `risk_level: "UNKNOWN"` rather than guessing.
 ---
 
 ## System Architecture
@@ -402,12 +413,13 @@ It is a practical example of applying modern AI techniques to a real business pr
 
 ---
 ## Contact 
--EMAIL : mssabarish16@gmail.com
+📧  EMAIL : mssabarish16@gmail.com
 
--Location : Salem , TN , India
+📍  Location : Salem , TN , India
 
--Linked In :https://www.linkedin.com/in/sabarish-m-s/
+🔗  [LinkedIn]([https://www.linkedin.com/in/your-profile](https://www.linkedin.com/in/sabarish-m-s/))
+ :https://www.linkedin.com/in/sabarish-m-s/
 
--DEV COMMUNITY : https://dev.to/saboosakthi
+𝓓   DEV COMMUNITY : https://dev.to/saboosakthi
 
 ---
