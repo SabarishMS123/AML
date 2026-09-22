@@ -287,7 +287,7 @@ This solution showcases practical skills in:
 ---
 ## LIVE HOSTED LINK 
 
-[**AML COMPLIANCE SUITE HOSTED LINK **](https://aml-compliance-suite-finzly-project.up.railway.app/)
+[**AML COMPLIANCE SUITE HOSTED LINK**](https://aml-compliance-suite-finzly-project.up.railway.app/)
 
 
 ---
