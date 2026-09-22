@@ -242,7 +242,7 @@ python -m unittest agents/test_agent_scenarios.py -v
 Add the project demo video link here:
 
 
-[**PROJECT DEMO VIDEO**](https://drive.google.com/file/d/1VZ0pe1mV96iMJiCt8Z1nhiaO_8rbO-Ub/view?usp=sharing)
+**[PROJECT DEMO VIDEO]**(https://drive.google.com/file/d/1VZ0pe1mV96iMJiCt8Z1nhiaO_8rbO-Ub/view?usp=sharing)
 
 ---
 
