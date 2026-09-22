@@ -4,7 +4,7 @@
 ![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-orange)
 ![MCP](https://img.shields.io/badge/MCP-FastMCP-purple)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey)
-# AML Compliance AI Suite
+#🛡️ AML Compliance AI Suite
 
 A practical AI-powered Anti-Money Laundering (AML) platform designed to support compliance teams with intelligent risk detection, policy-grounded investigation, and explainable decision support.
 
@@ -105,7 +105,25 @@ The solution follows a hybrid AI architecture:
    - MCP server for tool-based interaction
 
 ---
-
+```mermaid
+sequenceDiagram
+    participant U as User (Streamlit)
+    participant A as Agent Loop
+    participant G as Groq LLM
+    participant M as MCP Dispatcher
+    participant DB as Supabase / RAG
+    U->>A: run_investigation(customer_id, request)
+    loop until final report or max iterations
+        A->>G: messages + tool schemas
+        G-->>A: tool_calls OR final JSON
+        A->>M: call_tool(name, **args)
+        M->>DB: query
+        DB-->>M: result
+        M-->>A: tool_result
+        A->>U: yield AgentStep (live progress)
+    end
+    A->>U: yield InvestigationResult
+```
 ## Tech Stack
 
 - Python 3.11+
@@ -160,7 +178,7 @@ aml-streamlit-suite/
 │   ├── __init__.py
 │   ├── formatting.py
 │   └── ui.py
-
+└── README.md
 ```
 
 ---
@@ -216,7 +234,7 @@ Create a `.env` file in the project root with:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
-GROQ_MODEL=openai/gpt-oss-120b
+GROQ_MODEL=llama-3.3-70b-versatile
 SUPABASE_URL=https://url-supabase.supabase.co
 SUPABASE_KEY=your_service_role_key
 ```
