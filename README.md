@@ -420,6 +420,6 @@ It is a practical example of applying modern AI techniques to a real business pr
 🔗  [LinkedIn]([https://www.linkedin.com/in/your-profile](https://www.linkedin.com/in/sabarish-m-s/))
  :https://www.linkedin.com/in/sabarish-m-s/
 
-𝓓   DEV COMMUNITY : https://dev.to/saboosakthi
+𝓓    Dev Community : https://dev.to/saboosakthi
 
 ---
