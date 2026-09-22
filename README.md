@@ -1,3 +1,9 @@
+![Python](https://img.shields.io/badge/Python-3.11+-blue)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.38+-red)
+![Supabase](https://img.shields.io/badge/Supabase-pgvector-green)
+![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-orange)
+![MCP](https://img.shields.io/badge/MCP-FastMCP-purple)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
 # AML Compliance AI Suite
 
 A practical AI-powered Anti-Money Laundering (AML) platform designed to support compliance teams with intelligent risk detection, policy-grounded investigation, and explainable decision support.
