@@ -440,7 +440,10 @@ It is a practical example of applying modern AI techniques to a real business pr
 ## Contact
 
 📧 mssabarish16@gmail.com
+
 📍 Salem, Tamil Nadu, India
+
 🔗 [LinkedIn](https://www.linkedin.com/in/sabarish-m-s/)
+
 📝 [Dev.to](https://dev.to/saboosakthi)
 ---
